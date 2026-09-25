@@ -1,0 +1,26 @@
+order_id,order_date,customer_id,product,category,region,quantity,unit_price
+ORD-20260926-0001,2026-09-26,C1391,Running Shoes,Sports,West,2,85.44
+ORD-20260926-0002,2026-09-26,C1253,USB-C Charger,Electronics,East,1,19.93
+ORD-20260926-0003,2026-09-26,C1265,Green Tea Pack,Grocery,West,3,9.02
+ORD-20260926-0004,2026-09-26,C1700,Water Bottle,Sports,South,1,-59.99
+ORD-20260926-0005,2026-09-26,C1027,Laptop Stand,Office,South,3,36.13
+ORD-20260926-0006,2026-09-26,C1240,Running Shoes,Sports,East,2,82.1
+ORD-20260926-0007,2026-09-26,C1537,Coffee Beans 1kg,Grocery,South,3,18.45
+ORD-20260926-0008,2026-09-26,C1836,Running Shoes,Sports,East,1,14900.0
+ORD-20260926-0009,2026-09-26,C1849,Coffee Beans 1kg,Grocery,East,1,19.55
+ORD-20260926-0010,2026-09-26,C1732,Green Tea Pack,Grocery,East,1,9.94
+ORD-20260926-0011,2026-09-26,C1781,Laptop Stand,Office,West,2,35.04
+ORD-20260926-0011,2026-09-26,C1709,Ergonomic Chair,Office,South,2,216.99
+ORD-20260926-0013,2026-09-26,C1593,Smart Watch,Electronics,South,2,134.9
+ORD-20260926-0014,2026-09-26,C1144,Green Tea Pack,Grocery,South,2,9.13
+ORD-20260926-0015,2026-09-26,C1587,Running Shoes,Sports,South,1,92.54
+ORD-20260926-0016,2026-09-26,C1932,Laptop Stand,Office,Nort,1,32.78
+ORD-20260926-0017,2026-09-26,C1192,Smart Watch,Electronics,East,4,139.76
+ORD-20260926-0018,2026-09-26,C1343,Water Bottle,Sports,South,4,14.78
+ORD-20260926-0019,2026-09-26,,Laptop Stand,Office,North,1,31.58
+ORD-20260926-0020,2026-09-26,C1228,Wireless Earbuds,Electronics,West,2,54.92
+ORD-20260926-0021,2026-09-26,C1888,Green Tea Pack,Grocery,South,2,9.94
+ORD-20260926-0022,2026-09-26,C1929,Desk Lamp,Office,North,0,27.03
+ORD-20260926-0023,2026-09-26,C1182,Yoga Mat,Sports,North,2,25.71
+ORD-20260926-0024,2026-09-26,C1834,Green Tea Pack,Grocery,North,2,10.42
+ORD-20260926-0025,2026-09-26,C1071,Green Tea Pack,Grocery,South,3,9.08

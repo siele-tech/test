@@ -1,0 +1,3 @@
+# Consistent line endings across Windows/macOS/Linux (keeps CI diffs clean)
+* text=auto eol=lf
+*.png binary

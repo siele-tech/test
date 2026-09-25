@@ -1,0 +1,77 @@
+# Daily data refresh: adds the newest day(s) of sales, then triggers the CI/CD pipeline,
+# which validates the data again and redeploys the dashboard.
+#
+# Note: pushes made with GITHUB_TOKEN don't trigger other workflows (GitHub's loop
+# protection), so the pipeline is started explicitly with `gh workflow run`.
+
+name: Daily data refresh
+
+on:
+  schedule:
+    - cron: "0 6 * * *" # every day at 06:00 UTC (scheduled runs use the default branch)
+  workflow_dispatch:
+
+permissions:
+  contents: write # commit the new data file
+  actions: write # start the CI/CD pipeline
+
+concurrency:
+  group: data-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    name: Add new sales data & trigger pipeline
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: data-pipeline
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: data-pipeline/pyproject.toml
+
+      - name: Install
+        run: pip install -e .
+
+      - name: Generate any missing days up to today
+        id: generate
+        run: |
+          latest=$(ls data/raw/*.csv | sort | tail -n 1 | xargs basename | cut -d. -f1)
+          start=$(date -u -d "$latest + 1 day" +%F)
+          today=$(date -u +%F)
+          if [[ "$start" > "$today" ]]; then
+            echo "Data is already up to date (latest: $latest)."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          sales-pipeline generate "$start" "$today"
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+          echo "range=$start → $today" >> "$GITHUB_OUTPUT"
+
+      - name: Validate before committing
+        if: steps.generate.outputs.changed == 'true'
+        run: sales-pipeline validate
+
+      - name: Commit and push
+        if: steps.generate.outputs.changed == 'true'
+        env:
+          RANGE: ${{ steps.generate.outputs.range }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/raw
+          git commit -m "data: add daily sales ($RANGE)"
+          git push
+
+      - name: Trigger the CI/CD pipeline
+        if: steps.generate.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run pipeline.yml --ref "${{ github.ref_name }}"
+          echo "## 📥 New sales data added (${{ steps.generate.outputs.range }}) — pipeline triggered" >> "$GITHUB_STEP_SUMMARY"

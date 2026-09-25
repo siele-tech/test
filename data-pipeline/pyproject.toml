@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sales-pipeline"
+version = "1.0.0"
+description = "Validates daily sales files and exports dashboard data for Sales Pulse."
+requires-python = ">=3.11"
+dependencies = ["pandas>=2.2,<3"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<9", "pytest-cov>=5", "ruff>=0.6"]
+
+[project.scripts]
+sales-pipeline = "sales_pipeline.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--strict-markers"
+
+[tool.coverage.run]
+source = ["sales_pipeline"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 85
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM"]
