@@ -41,7 +41,8 @@ jobs:
       - name: Generate any missing days up to today
         id: generate
         run: |
-          latest=$(ls data/raw/*.csv | sort | tail -n 1 | xargs basename | cut -d. -f1)
+          latest=$(find data/raw -name '*.csv' -printf '%f\n' | sort | tail -n 1)
+          latest="${latest%.csv}"
           start=$(date -u -d "$latest + 1 day" +%F)
           today=$(date -u +%F)
           if [[ "$start" > "$today" ]]; then
