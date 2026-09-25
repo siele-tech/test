@@ -1,7 +1,7 @@
 # Sales Pulse
 
-[![CI/CD Pipeline](https://github.com/OWNER/REPO/actions/workflows/pipeline.yml/badge.svg)](https://github.com/OWNER/REPO/actions/workflows/pipeline.yml)
-[![Daily data refresh](https://github.com/OWNER/REPO/actions/workflows/data-refresh.yml/badge.svg)](https://github.com/OWNER/REPO/actions/workflows/data-refresh.yml)
+[![CI/CD Pipeline](https://github.com/siele-tech/test/actions/workflows/pipeline.yml/badge.svg)](https://github.com/siele-tech/test/actions/workflows/pipeline.yml)
+[![Daily data refresh](https://github.com/siele-tech/test/actions/workflows/data-refresh.yml/badge.svg)](https://github.com/siele-tech/test/actions/workflows/data-refresh.yml)
 
 **An automated sales analytics platform.** A Python data pipeline validates daily sales files and computes KPIs. A Next.js dashboard presents them. A GitHub Actions CI/CD pipeline tests everything and deploys it to Vercel.
 
