@@ -7,7 +7,7 @@
 
 > **Bad data never reaches the dashboard.** If a sales file fails a data-quality check, or any test fails, the pipeline stops before deployment and the live site keeps showing the last good version.
 
-**Live dashboard:** _add your Vercel URL here_
+**Live dashboard:** https://sales-pulse-snowy-phi.vercel.app
 
 ---
 
